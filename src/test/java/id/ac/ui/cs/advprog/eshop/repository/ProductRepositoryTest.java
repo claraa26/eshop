@@ -64,4 +64,46 @@ class ProductRepositoryTest{
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditProduct() {
+        Product originalProduct = new Product();
+        originalProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        originalProduct.setProductName("Cabai Merah");
+        originalProduct.setProductQuantity(100);
+        productRepository.create(originalProduct);
+
+        // Update the product details
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        updatedProduct.setProductName("Cabai Hijau");
+        updatedProduct.setProductQuantity(150);
+        productRepository.edit(updatedProduct);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        Product savedProduct = productIterator.next();
+
+        assertEquals(originalProduct.getProductName(), savedProduct.getProductName());
+        assertEquals(originalProduct.getProductId(), savedProduct.getProductId());
+        assertEquals(originalProduct.getProductQuantity(), savedProduct.getProductQuantity());
+    }
+    @Test
+    void testDeleteProduct() {
+        // Create a product and save it
+        Product productToDelete = new Product();
+        productToDelete.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productToDelete.setProductName("Cabai Merah");
+        productToDelete.setProductQuantity(100);
+        productRepository.create(productToDelete);
+
+        // Delete the product from the repository
+        productRepository.delete("eb558e9f-1c39-460e-8860-71af6af63bd6");
+
+        // Try to retrieve the deleted product
+        Product deletedProduct = productRepository.findByProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+
+        // Assert that the product is not found (deleted)
+        assertNull(deletedProduct);
+    }
 }
