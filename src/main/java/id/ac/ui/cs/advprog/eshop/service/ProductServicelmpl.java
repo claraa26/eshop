@@ -37,4 +37,9 @@ public class ProductServicelmpl implements ProductService{
     public Product findByProductId(String productId){
         return productRepository.findByProductId(productId);
     }
+
+    @Override
+    public void delete(String productId){
+        productRepository.delete(productId);
+    }
 }
