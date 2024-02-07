@@ -28,4 +28,13 @@ public class ProductServicelmpl implements ProductService{
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
     }
+    @Override
+    public Product edit(Product editedProduct){
+        return productRepository.edit(editedProduct);
+    }
+
+    @Override
+    public Product findByProductId(String productId){
+        return productRepository.findByProductId(productId);
+    }
 }
