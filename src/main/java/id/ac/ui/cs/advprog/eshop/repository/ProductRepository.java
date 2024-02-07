@@ -19,6 +19,10 @@ public class ProductRepository {
         return product;
     }
 
+    public Iterator<Product> findAll(){
+        return productData.iterator();
+    }
+
     public Product edit(Product editedProduct){
         for(int i=0; i<productData.size(); i++){
             if(productData.get(i).getProductId().equals(editedProduct.getProductId())){
@@ -39,7 +43,7 @@ public class ProductRepository {
         return null;
     }
 
-    public Iterator<Product> findAll(){
-        return productData.iterator();
+    public void delete(String productId){
+        productData.remove(findByProductId(productId));
     }
 }
