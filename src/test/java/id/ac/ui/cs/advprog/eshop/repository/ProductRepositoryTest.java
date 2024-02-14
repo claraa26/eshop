@@ -37,6 +37,17 @@ class ProductRepositoryTest{
     }
 
     @Test
+    void  testCreateAndFindById(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Cabai Merah");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        Product findProduct = productRepository.findByProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertEquals(findProduct.getProductId(), product.getProductId());
+    }
+
+    @Test
     void testFindAllIfEmpty(){
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
@@ -88,6 +99,39 @@ class ProductRepositoryTest{
         assertEquals(originalProduct.getProductId(), savedProduct.getProductId());
         assertEquals(originalProduct.getProductQuantity(), savedProduct.getProductQuantity());
     }
+
+    @Test
+    void testEditProductNotFound(){
+        Product editedProduct = new Product();
+        editedProduct.setProductId("non-existent-id");
+        editedProduct.setProductName("Cabai Merah");
+        editedProduct.setProductQuantity(100);
+
+        Product editProduct = productRepository.edit(editedProduct);
+        assertNull(editProduct);
+    }
+
+    @Test
+    void testFailEditProduct(){
+        Product originalProduct = new Product();
+        originalProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        originalProduct.setProductName("Cabai Merah");
+        originalProduct.setProductQuantity(100);
+        productRepository.create(originalProduct);
+
+        Product editedProduct = new Product();
+        editedProduct.setProductId("eb558e9f-1c39-461t-8860-71af6af63bd6");
+        editedProduct.setProductName("Cabai Hijau");
+        editedProduct.setProductQuantity(150);
+        productRepository.edit(editedProduct);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        Product savedProduct = productIterator.next();
+        assertNotEquals(originalProduct.getProductId(), editedProduct.getProductId());
+
+    }
+
     @Test
     void testDeleteProduct() {
         // Create a product and save it
@@ -105,5 +149,39 @@ class ProductRepositoryTest{
 
         // Assert that the product is not found (deleted)
         assertNull(deletedProduct);
+    }
+
+    @Test
+    void testDeleteProductNotFound(){
+        Product productToDelete = new Product();
+        productToDelete.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productToDelete.setProductName("Cabai Merah");
+        productToDelete.setProductQuantity(100);
+        productRepository.create(productToDelete);
+
+        Product productToDelete2 = new Product();
+        productToDelete2.setProductId("a9hjk189-00ab-jkiq-jie6-095y-5o43g3pwfbq6");
+        productToDelete2.setProductName("Bawang Merah");
+        productToDelete2.setProductQuantity(100);
+        productRepository.create(productToDelete2);
+
+        productRepository.delete("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertTrue(productIterator.hasNext());
+        Product product = productIterator.next();
+        assertNotEquals(productToDelete.getProductId(), product.getProductId());
+
+    }
+
+    @Test
+    void testFailDeleteProduct(){
+        Product productToDelete = new Product();
+        productToDelete.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productToDelete.setProductName("Cabai Merah");
+        productToDelete.setProductQuantity(100);
+        productRepository.create(productToDelete);
+
+        assertFalse(productRepository.delete("a9hjk189-00ab-jkiq-jie6-095y-5o43g3pwfbq6"));
+
     }
 }
