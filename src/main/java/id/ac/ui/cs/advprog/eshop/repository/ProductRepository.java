@@ -14,7 +14,9 @@ public class ProductRepository {
 
     public Product create(Product product){
         String productId = UUID.randomUUID().toString();
-        product.setProductId(productId);
+        if(product.getProductId()== null){
+            product.setProductId(productId);
+        }
         productData.add(product);
         return product;
     }
@@ -43,7 +45,7 @@ public class ProductRepository {
         return null;
     }
 
-    public void delete(String productId){
-        productData.remove(findByProductId(productId));
+    public boolean delete(String productId){
+        return productData.removeIf(product -> product.getProductId().equals(productId));
     }
 }
