@@ -23,7 +23,7 @@ class ProductServiceTest {
     private ProductRepository productRepository;
 
     @InjectMocks
-    private ProductServicelmpl productService;
+    private ProductServiceImpl productService;
 
     @BeforeEach
     void setUp() {
