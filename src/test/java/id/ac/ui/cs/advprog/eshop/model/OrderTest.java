@@ -48,7 +48,7 @@ class OrderTest{
 
         assertEquals("acp58g99-1c39-450h-8860-71af6af63bd6", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
-        assertEquals("Safaira Sudrajat", order.getAuthor());
+        assertEquals("Safira Sudrajat", order.getAuthor());
         assertEquals("WAITING_PAYMENT", order.getStatus());
     }
 
