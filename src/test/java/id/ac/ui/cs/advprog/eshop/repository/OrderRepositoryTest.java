@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ class OrderRepositoryTest{
         Order order = orders.get(1);
         Order result = orderRepository.save(order);
 
-        Order findResult = orders.findById(orders.get(1).getId());
+        Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
