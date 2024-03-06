@@ -40,6 +40,7 @@ class PaymentRepositoryTest{
                 products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
 
+        payments = new ArrayList<>();
         Map<String, String> paymentDataWithVoucher = new HashMap<>();
         Map<String, String> paymentDataWithBankTransfer = new HashMap<>();
 
