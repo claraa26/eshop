@@ -44,7 +44,7 @@ public class PaymentTest {
     @Test
     void testCreateEmptyPayment(){
         assertThrows(IllegalArgumentException.class, () ->{
-            Payment payment = new Payment(" ", " ", " ", Map.of());
+            Payment payment = new Payment("", "", "", new HashMap<>());
         });
     }
 
