@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface PaymentService {
-    public Payment createPayment(String id, String method, String status, Map<String, String> paymentdata);
+    public Payment createPayment(Payment payment);
     public Payment updateStatus(String paymentId, String status);
     public Payment findById(String paymentId);
     public List<Payment> getAllPayment();
