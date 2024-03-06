@@ -1,10 +1,35 @@
-# Modul 3
+# Modul 4
 Nama    : Clara Sista Widhiastuti<br/>
 NPM     : 2206825782<br/>
 Kelas   : Pemrograman Lanjut A <br/>
 
 
 ## Reflection
+### Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+Menurut saya alur TDD ini cukup berguna, kita bisa lebih _aware_ terhadap kemungkinan permasalahan yang akan terjadi. 
+Karena pada alur TDD ini di haruskan untuk membuat unit test terlebih dahulu. Namun, untuk saya pribadi kadang masih 
+suka bingung dan tidak terbayang bentuk utuh kodingannya ketika sudah jadi. Menurut saya, untuk membuat lebih banyak tes
+tentunya kita membutuhkan waktu lebih banyak dalam proses perancangannya serta dapat lebih teliti. 
+### You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+1. Fast
+Menurut saya, code yang saya buat sudah cukup cepat ketika di running, sehingga tidak menghambat saya dalam 
+proses pengerjaannya
+2. Isolated/Independent
+Dalam kode saya, saya merasa ada beberapa bagian yang saling bergantung terutama pada bagian model test dan service test.
+Pada pengerjaan bagian 'GREEN' saya kerap kali bingung mendebug karena jika diubah, maka test yang passed bisa menjadi
+failed juga. Mungkin kedepannya saya akan mengatur agar unit test yang saya buat isolated.
+3. Repeatable
+Menurut saya kode yang saya buat sudah memenuhi prinsip repeatable. Pengujian ulang dari unit test menghasilkan 
+hasil yang konsisten.
+4. Self-Validating
+Kode saya telah mengimplementasikan prinsip ini dengan baik. Setiap unit test memiliki pernyataan yang jelas dan benar
+dalam konteks kode yang sedang di uji telah melakukan hal yang seharusnya. Sehingga hasilnya sangat mudah dinilai 
+sebagai lulus atau gagalnya.
+5. Thorough/Timely
+Sepertinya dalam kode saya, terdapat beberapa skenario yang tidak saya buat unit testnya. Hal tersebut karena saya 
+kurang mengatur banyak waktu untuk melakukan perancangan skenario untuk unit test 
+<details>
+<summary>Modul 3</summary>
 ### Explain what principles you apply to your project!
 **SRP** </br>
 Suatu kelas harus bertanggung jawab pada satu tugas/pekerjaan saja. Kelas-kelas tersebut dipisahkan pada beberapa file 
@@ -38,6 +63,7 @@ dipahami. Proses testing akan lebih susah dilakukan juga. Karena satu file bisa 
 ketika testing gagal maka akan sulit menemukan method mana yang gagal. Contohnya jika CarController tetap digabung 
 bersama dengan ProductController maka untuk testing akan lebih susah dan rumit. Selain itu proses mapping juga akan 
 lebih susah.
+</details>
 
 <details>
 <summary>Modul 2</summary>
