@@ -67,7 +67,8 @@ class PaymentServiceTest{
         Payment payment = payments.get(1);
         doReturn(payment).when(paymentRepository).save(payment);
 
-        Payment result = paymentService.createPayment(payment);
+        Payment result = paymentService.createPayment(payment.getId(), payment.getMethod(),
+                PaymentStatus.SUCCESS.getValue(), payment.getPaymentData());
         verify(paymentRepository, times(1)).save(payment);
         assertEquals(payment.getId(), result.getId());
     }
@@ -77,7 +78,8 @@ class PaymentServiceTest{
         Payment payment = payments.get(1);
         doReturn(payment).when(paymentRepository).findById(payment.getId());
 
-        assertNull(paymentService.createPayment(payment));
+        assertNull(paymentService.createPayment(payment.getId(), payment.getMethod(),
+                PaymentStatus.SUCCESS.getValue(), payment.getPaymentData()));
         verify(paymentRepository, times(0)).save(payment);
     }
 
