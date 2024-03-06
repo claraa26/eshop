@@ -1,6 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
-import enums.OrderStatus;
+import enums.PaymentStatus;
 import lombok.*;
 
 import java.util.Map;
@@ -11,8 +11,6 @@ public class Payment {
     String id;
     String method;
     Order order;
-
-    @Setter
     String status;
 
     Map<String, String> paymentData;
@@ -20,6 +18,7 @@ public class Payment {
     public Payment(String id, String method, String status, Map<String, String> paymentData){
         this.id = id;
         this.setStatus(status);
+
 
         if("Bank Transfer".equals(method) || "Voucher Code".equals(method)){
             this.method = method;
@@ -51,7 +50,7 @@ public class Payment {
     }
 
     public void setStatus(String status){
-        if(OrderStatus.contains(status)){
+        if(PaymentStatus.contains(status)){
             this.status = status;
         }else{
             throw new IllegalArgumentException();
